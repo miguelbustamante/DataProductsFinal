@@ -1,0 +1,48 @@
+MTCARS Operations
+========================================================
+author: Miguel Alfonso Bustamante Sanchez
+date: August 13, 2017
+autosize: true
+
+Plot function selector
+========================================================
+You are able to select the plotting function with a checkbox, easily change between hist() and plot() with a sigle click.
+
+![alt text](checkbox.png)
+
+![alt text](hist.png)
+![alt text](plot.png)
+
+
+Simple linear model
+========================================================
+With the click of a button you may fit a simple linear model.
+
+```{r}
+fit <- lm(mpg ~ ., data = mtcars)
+        par(mfrow = c(2, 2))
+        plot(fit)
+```
+
+Personalized model
+========================================================
+Or you can choose a model you want by writting it in the text, based on the mtcars data.
+
+![alt text](formula_text.png)
+
+```{r}
+fit <- lm(mpg ~ ., data = mtcars)
+        par(mfrow = c(2, 2))
+        plot(fit)
+```
+
+Coefficients
+========================================================
+You can also display the coefficients with the click of a button
+
+![alt text](coef.png)
+
+```{r}
+fit <- lm(mpg ~ ., data = mtcars)
+        summary(fit)$coef
+```
