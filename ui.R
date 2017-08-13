@@ -13,21 +13,51 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("Old Faithful Geyser Data"),
-  
-  # Sidebar with a slider input for number of bins 
-  sidebarLayout(
-    sidebarPanel(
-       sliderInput("bins",
-                   "Number of bins:",
-                   min = 1,
-                   max = 50,
-                   value = 30)
-    ),
+  fluidRow(
+    column(12, 
+           titlePanel("MTCARS"),
+           textOutput("t1"),
+           h3("Column Names"),
+           textOutput("t2"),
+           h3("Plot function selector"),
+           textOutput("tpf"),
+           h3("Linear Model"),
+           textOutput("tlm"),
+           hr()
+           )
     
-    # Show a plot of the generated distribution
-    mainPanel(
-       plotOutput("distPlot")
-    )
+  ),
+  
+  fluidRow(
+    column(12,
+           
+           
+           
+           
+           # Sidebar with a slider input for number of bins 
+           sidebarLayout(
+             sidebarPanel(
+               h4("Plot function selector"),
+               checkboxInput("Plot Function",
+                             "Checked for hist(), unckeck for plot()",
+                             FALSE),
+               h4("Linear Model"),
+               textInput("formula", "Formula", "mpg ~ ."),
+               actionButton("fitme", "Plot Model"),
+               actionButton("summaryFit", "Get Coeficients")
+               
+             ),
+             
+             # Show a plot of the generated distribution
+             mainPanel(
+               plotOutput("distPlot"),
+               plotOutput("linearModel"),
+               tableOutput("summarySpace")
+             )
+           )
+           
+           )
+    
   )
+  
 ))
